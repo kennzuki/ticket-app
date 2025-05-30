@@ -1,5 +1,5 @@
 import React from 'react'
-
+import {createTicket} from '@/app/actions/ticket.actions'
 const NewTicketPage = () => {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-100 p-4">
@@ -8,7 +8,7 @@ const NewTicketPage = () => {
         Submit a Support Ticket
       </h1>
      
-      <form  className='space-y-4 text-gray-700'>
+      <form action={createTicket}  className='space-y-4 text-gray-700'>
         <input
           className='w-full border border-gray-200 p-3 rounded focus:outline-none focus:ring-2 focus:ring-blue-400'
           type='text'
