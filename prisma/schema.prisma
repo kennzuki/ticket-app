@@ -14,11 +14,15 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User {
-  id        String   @id @default(cuid())
-  email     String   @unique
-  name      String?
-  
+
+
+model Ticket {
+  id         Int   @id @default(autoincrement())
+  subject    String
+  description  String
+  status    String   @default("open")
+  priority  String  
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
 }
