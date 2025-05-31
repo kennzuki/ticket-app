@@ -2,7 +2,7 @@
 
 import React, { useActionState,useEffect } from 'react'
 import { createTicket } from '@/app/actions/ticket.actions'
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/navigation'
 
 const NewTicketPage = () => {
   const[state,formAction]= useActionState(createTicket, {
