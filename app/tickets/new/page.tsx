@@ -1,13 +1,20 @@
 'use client'
 
-import React, { useActionState } from 'react'
+import React, { useActionState,useEffect } from 'react'
 import { createTicket } from '@/app/actions/ticket.actions'
+import { useRouter } from 'next/router'
 
 const NewTicketPage = () => {
   const[state,formAction]= useActionState(createTicket, {
     success: false,
     message: '',
   })
+  const router=useRouter()
+  useEffect(() => {
+    if (state.success) {
+      router.push('/tickets')
+    }
+  }, [state.success, router])
 
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-100 p-4">

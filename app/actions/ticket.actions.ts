@@ -1,13 +1,26 @@
 'use server';
+import { prisma } from "@/db/prisma";
+import { revalidatePath } from "next/cache";
 export async function createTicket(
   prevState: { sucess: boolean; messsage: string },
   formData: FormData
 ): Promise<{ success: boolean; message: string }> {
 
- // Extracting form data
+try {
+     // Extracting form data
   const subject = formData.get('subject')?.toString() || ('' as string);
   const description = formData.get('description')?.toString() || ('' as string);
-    const priority = formData.get('priority')?.toString() || ('Low' as string);
+  const priority = formData.get('priority')?.toString() || ('Low' as string);
+  
+  //sending the form data to the backend
+  await prisma.ticket.create({
+      data: {
+        subject,
+        description,
+        priority,
+       
+      },
+    });
     
     //error in the form data
     if (!subject || !description || !priority) {
@@ -18,9 +31,17 @@ export async function createTicket(
     }
   // Here you would typically send the data to your backend or API
   // For demonstration, we will just log it to the console
-  console.log('Ticket Created:', { subject, description, priority });
+      revalidatePath('/tickets');
   return {
     success: true,
     message: 'Ticket created successfully',
   };
+} catch (error) {
+   return {
+      success: false,
+      message: `${error} occured while creating the ticket'`,
+    };
+}
+
+
 }
