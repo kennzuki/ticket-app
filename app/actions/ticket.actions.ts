@@ -58,3 +58,20 @@ export async function getTicket() {
     };
   }
 }
+
+//get one ticket by id
+export async function getTicketById(id: string) { 
+  try {
+    const ticket = await prisma.ticket.findUnique({
+      where: {
+        id:Number(id),
+      },
+    });
+    return ticket;
+  } catch (error) {
+    return {
+      success: false,
+      message: `${error} occured while fetching the ticket`,
+    };
+  }
+}

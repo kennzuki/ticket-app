@@ -1,20 +1,10 @@
 import Link from 'next/link';
 import { getTicket } from '../actions/ticket.actions';
+import { priorityList } from '@/app/utils/ticketUtils';
 
 const TicketPage = async () => {
   const tickets = await getTicket();
-  const priorityList = (priority: string) => { 
-    switch (priority) {
-      case 'High':
-        return 'text-red-600';
-      case 'Medium':
-        return 'text-orange-400';
-      case 'Low':
-        return 'text-yellow-600';
-      default:
-        return 'text-gray-600';
-    }
-  }
+
 
   return (
     <div className='min-h-screen flex flex-col items-center justify-center gap-4  bg-gray-100 p-4'>
