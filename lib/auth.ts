@@ -56,3 +56,14 @@ export async function getAuthToken() {
     throw new Error('Error retrieving auth token');
   }
 }
+
+//Remove the auth token from cookies
+export async function removeAuthToken() {
+  try {
+    const cookieStore = await cookies();
+    cookieStore.delete(cookieName);
+  } catch (error) {
+    error.message = 'Error removing auth token';
+    throw new Error('Error removing auth token');
+  }
+}
