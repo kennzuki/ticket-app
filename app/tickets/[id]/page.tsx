@@ -11,7 +11,7 @@ const GetTicketDetail = async (props: { params: Promise<{ id: string }> }) => {
     notFound();
   }
   return (
-    <div className='min-h-screen bg-gray-150 p-8'>
+    <div className='min-h-screen bg-gray-200 p-8'>
       <div className='max-w-2xl mx-auto bg-white rounded-lg shadow border border-gray-200 p-8 space-y-6'>
         <h1 className='text-3xl font-bold text-blue-600 capitalize'>{ticket.subject}</h1>
 

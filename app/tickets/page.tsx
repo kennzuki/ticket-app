@@ -7,8 +7,8 @@ const TicketPage = async () => {
 
 
   return (
-    <div className='min-h-screen flex flex-col items-center justify-center gap-4  bg-gray-100 p-4'>
-      <h1 className='text-3xl font-bold mb-6 text-blue-600 flex justify-center mx-auto'>
+    <div className=' flex flex-col items-center justify-center gap-4  bg-gray-100 p-4'>
+      <h1 className='text-3xl font-bold mb-6 text-green-600 flex justify-center mx-auto'>
         Your Tickets
       </h1>
       {tickets.length === 0 ? (
