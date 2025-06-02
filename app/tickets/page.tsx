@@ -12,7 +12,7 @@ const TicketPage = async () => {
         Your Tickets
       </h1>
       {tickets.length === 0 ? (
-        <p className='text-center text-gray-600'>No Tickets recorded</p>
+        <p className='text-center text-gray-600'>No Tickets to display</p>
       ) : (
         <div className='space-y-4 max-w-3xl mx-auto'>
           {tickets.map((ticket) => (
