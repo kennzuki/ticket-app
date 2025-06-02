@@ -44,3 +44,15 @@ export async function setAuthCookie(token: string) {
     throw new Error('Error setting auth cookie');
   }
 }
+
+//Get the auth token from cookies
+export async function getAuthToken() { 
+  try {
+    const cookieStore = await cookies();
+    const token = cookieStore.get(cookieName)
+    return token?.value;
+  } catch (error) {
+    error.message = 'Error retrieving auth token';
+    throw new Error('Error retrieving auth token');
+  }
+}
