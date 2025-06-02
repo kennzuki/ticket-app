@@ -19,3 +19,14 @@ export async function signAuthToken (payload: string) {
 
 }
 
+//decrypt and verify token
+export async function verifyAuthToken<T> (token: string): Promise<T> {
+    try {
+        const { payload } = await jwtVerify(token, secret);
+        return payload as T;
+    } catch (error) {
+        error.message = "Invalid or expired token";
+        throw new Error("Error verifying auth token");
+    }
+}
+
