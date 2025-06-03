@@ -1,6 +1,5 @@
 'use server'
 import { prisma } from "@/db/prisma"
-import { signAuthToken } from "@/lib/auth"
 import bcrypt from "bcryptjs"
 import { signAuthToken, setAuthCookie } from "@/lib/auth"
 
