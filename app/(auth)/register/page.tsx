@@ -1,15 +1,27 @@
 'use client';
 import { useActionState, useEffect } from 'react';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 import { registerUser } from '@/app/actions/auth.actions';
 import { toast } from 'sonner';
 
 const RegiisterPage = () => {
+const router = useRouter();
+
   const initialState = {
     success: false,
     message: '',
-  };
-  const [state, formAction] = useActionState(registerUser, initialState);
+    };
+    
+    const [state, formAction] = useActionState(registerUser, initialState);
+    useEffect(() => {
+        if (state.success) {
+            toast.success("Registration successful");
+            router.push('/tickets');
+        } else if (state.message) {
+            toast.error(state.message);
+        }
+    }, [state, router]);
+   
 
   return (
     <div className='min-h-screen flex items-center justify-center bg-gray-200 px-4'>
