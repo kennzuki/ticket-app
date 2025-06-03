@@ -46,7 +46,7 @@ export async function setAuthCookie(token: string) {
 }
 
 //Get the auth token from cookies
-export async function getAuthToken() { 
+export async function getAuthCookie() { 
   try {
     const cookieStore = await cookies();
     const token = cookieStore.get(cookieName)
@@ -58,7 +58,7 @@ export async function getAuthToken() {
 }
 
 //Remove the auth token from cookies
-export async function removeAuthToken() {
+export async function removeAuthCookie() {
   try {
     const cookieStore = await cookies();
     cookieStore.delete(cookieName);
