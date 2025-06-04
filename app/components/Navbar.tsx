@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { getCurrentUser } from '@/lib/current-user';
+import LogoutButton from './LogoutButton';
 
 const Navbar = () => {
   const user= getCurrentUser();
@@ -26,7 +27,7 @@ const Navbar = () => {
             >
               My Tickets
             </Link>
-            <button className='bg-red-600 font-bold text-white px-4 py-2 rounded hover:bg-blue-700 transition'>Logout</button>
+            <LogoutButton/>
           </>
         ) : (
             <>
