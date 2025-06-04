@@ -56,7 +56,20 @@ export async function createTicket(
 
 export async function getTicket() {
   try {
+    const user = await getCurrentUser();
+    if (!user) {
+      return {
+        success: false,
+        message: 'Unauthorized You must be logged in to view tickets',
+      };
+      return[]
+    }
     const tickets = await prisma.ticket.findMany({
+      where: {
+        user: {
+          id: user.id
+        },
+      },
       orderBy: {
         createdAt: 'desc',
       },
