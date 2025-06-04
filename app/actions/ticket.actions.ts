@@ -1,11 +1,19 @@
 'use server';
 import { prisma } from '@/db/prisma';
 import { revalidatePath } from 'next/cache';
+import { getCurrentUser } from '@/lib/current-user';
 export async function createTicket(
   prevState: { sucess: boolean; messsage: string },
   formData: FormData
 ): Promise<{ success: boolean; message: string }> {
   try {
+    const user = await getCurrentUser();
+    if (!user) {
+      return {
+        success: false,
+        message: 'You must be logged in to create a ticket',
+      };
+    }
     // Extracting form data
     const subject = formData.get('subject')?.toString() || ('' as string);
     const description =
@@ -18,6 +26,9 @@ export async function createTicket(
         subject,
         description,
         priority,
+        user:{
+          connect:{id:user.id}
+        }
       },
     });
 
