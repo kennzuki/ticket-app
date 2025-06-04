@@ -2,8 +2,8 @@ import Link from 'next/link';
 import { getCurrentUser } from '@/lib/current-user';
 import LogoutButton from './LogoutButton';
 
-const Navbar = () => {
-  const user= getCurrentUser();
+const Navbar = async () => {
+  const user= await getCurrentUser();
   return (
     <nav className='bg-white border-b border-gray-200 px-6 py-4 flex justify-between items-center'>
       <div>
