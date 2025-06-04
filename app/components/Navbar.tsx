@@ -7,7 +7,7 @@ const Navbar = async () => {
   return (
     <nav className='bg-white border-b border-gray-200 px-6 py-4 flex justify-between items-center'>
       <div>
-        <Link href='/' className='text-3xl font-bold uppercase  text-green-600'>
+        <Link href='/' className='sm:text-xl lg:text-3xl font-bold uppercase  text-green-600'>
           KenkiTicket
         </Link>
       </div>
