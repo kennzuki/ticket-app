@@ -1,4 +1,4 @@
-'use server'
+'use server';
 
 import { SignJWT, jwtVerify } from 'jose';
 import { cookies } from 'next/headers';
@@ -16,7 +16,7 @@ export async function signAuthToken(payload: string) {
       .sign(secret);
     return token;
   } catch (error) {
-    throw new Error('Error signing auth token');
+    throw new Error(`Error signing auth token: ${error instanceof Error ? error.message : error}`)
   }
 }
 
@@ -26,8 +26,7 @@ export async function verifyAuthToken<T>(token: string): Promise<T> {
     const { payload } = await jwtVerify(token, secret);
     return payload as T;
   } catch (error) {
-    error.message = 'Invalid or expired token';
-    throw new Error('Error verifying auth token');
+    throw new Error(`Error occurred: ${error instanceof Error ? error.message : error}`)
   }
 }
 
@@ -42,20 +41,18 @@ export async function setAuthCookie(token: string) {
       maxAge: 60 * 60 * 24 * 7,
     });
   } catch (error) {
-    error.message
-    throw new Error('Error setting auth cookie');
+     throw new Error(`Error occurred: ${error instanceof Error ? error.message : error}`)
   }
 }
 
 //Get the auth token from cookies
-export async function getAuthCookie() { 
+export async function getAuthCookie() {
   try {
     const cookieStore = await cookies();
-    const token = cookieStore.get(cookieName)
+    const token = cookieStore.get(cookieName);
     return token?.value;
   } catch (error) {
-    error.message = 'Error retrieving auth token';
-    throw new Error('Error retrieving auth token');
+     throw new Error(`Error occurred: ${error instanceof Error ? error.message : error}`)
   }
 }
 
@@ -65,7 +62,6 @@ export async function removeAuthCookie() {
     const cookieStore = await cookies();
     cookieStore.delete(cookieName);
   } catch (error) {
-    error.message = 'Error removing auth token';
-    throw new Error('Error removing auth token');
+     throw new Error(`Error occurred: ${error instanceof Error ? error.message : error}`)
   }
 }
