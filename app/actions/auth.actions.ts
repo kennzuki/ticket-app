@@ -10,7 +10,7 @@ type responseResult = {
 
 export async function registerUser(
   prevState: responseResult,
-  formData: FormData
+  formData: FormData,
 ): Promise<responseResult> {
   try {
     //extracting form data
@@ -44,7 +44,7 @@ export async function registerUser(
     });
 
     //sign and set auth token
-    const token = await signAuthToken(user.id );
+    const token = await signAuthToken(user.id);
     await setAuthCookie(token);
 
     return { success: true, message: 'User registered successfully' };
@@ -59,7 +59,7 @@ export async function registerUser(
 //login user
 export async function loginUser(
   prevState: responseResult,
-  formData: FormData
+  formData: FormData,
 ): Promise<responseResult> {
   try {
     //extracting form data
@@ -86,7 +86,7 @@ export async function loginUser(
     }
 
     //sign and set auth token
-    const token = await signAuthToken({ userId: user.id });
+    const token = await signAuthToken(user.id);
     await setAuthCookie(token);
 
     return { success: true, message: 'User logged in successfully' };
